@@ -1,0 +1,16 @@
+﻿/*********** Global Settings ************/
+a:hover { 
+    text-decoration: none;
+}
+
+/*********** Header ************/
+
+header{
+    .description {
+        h3 {
+            margin-bottom: 0px;
+            color: aquamarine;
+        }
+    }
+      
+}

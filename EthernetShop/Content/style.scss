@@ -1,0 +1,276 @@
+﻿/*********** Global Settings ************/
+a, a:hover {
+    text-decoration: none;
+}
+
+input, select, textarea, button {
+    border-radius: 0 !important;
+}
+
+button:active, button:hover, button:focus {
+    box-shadow: none !important;
+    outline: 0 none !important;
+}
+input:active, input:hover, input:focus {
+    box-shadow: none !important;
+    outline: 0 none !important;
+}
+select:active, select:hover, select:focus {
+    box-shadow: none !important;
+    outline: 0 none !important;
+}
+textarea:active, textarea:hover, textarea:focus {
+    box-shadow: none !important;
+    outline: 0 none !important;
+}
+
+.item-logo{
+    img {
+        display: inline-block;
+    }
+}
+
+$grey: #666666;
+$nav-grey: #fafdfa;
+$light-grey: #cccccc;
+$light-green: #67cc67;
+$orange:#ff9933;
+/*********** Header ************/
+header {
+    .description {
+        h4 {
+            color: $grey;
+            font-weight: normal;
+            text-transform: uppercase;
+        }
+    }
+
+    .phone_number {
+        margin-bottom: 20px;
+
+        a {
+            display: inline-block;
+        }
+
+        a, a:visited, a:hover, a:active {
+            color: $grey;
+        }
+
+        h4 {
+            margin-bottom: 0px;
+        }
+
+        p {
+            color: $grey;
+            margin-top: 0px;
+        }
+    }
+}
+
+/************ Navigation **************/
+nav {
+    z-index: 9000;
+    background-color: $nav-grey;
+    width: 100%;
+    ul {
+        list-style: none;
+        margin: 0;
+        li {
+            padding: 0 !important;
+            margin: 0;
+            margin-left: -4px;
+            display: inline-block;    
+            a {
+                display: inline-block;
+                color: $grey;
+                text-transform: uppercase;
+                padding: 20px 10px;
+                transition: all 400ms ease;
+            }
+            a:hover {
+                color: #fff;
+                background-color: $light-green;
+            }
+        }
+        li.drop-menu {
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                z-index: 1;
+                a {
+                    display: block;
+                    background-color: $nav-grey;
+                }
+            }
+        }
+        li.drop-menu:hover {
+            .dropdown-content {
+                display: block;
+                a:hover {
+                    color: #fff;
+                    background-color: $light-green;
+                }
+            }
+        }
+    }
+}
+
+/************* Footer *****************/
+footer {
+}
+
+/************* AddItem.cshtml *********/
+section#add_item {
+    margin-top: 20px;
+    h4{
+        color: $grey;
+    }
+    select.form-control {
+        color: $grey;
+    }
+    select, input, textarea {
+        color: $grey;
+    }
+    select.form-control:hover, select.form-control:focus {
+        opacity: 1;
+    }
+    input:focus, select:focus, textarea:focus, button:focus {
+        border-color: $light-green;
+    }
+    .form-group {
+        margin-bottom: 5px;
+    }
+    form#formAdd
+    {
+        label {
+            color: $grey;
+            input[type="checkbox"] {
+                display: inline-block;
+                margin-top: 0px;
+                padding-left: 12px;
+                transform: scale(1.2);  
+            }
+        }
+    }
+    input.upload-images, button {
+        color: $grey;
+        padding: 10px 15px;
+        border: 1px solid $light-green;
+        background-color: transparent;
+		transition: all 400ms ease;
+    }
+    input.upload-images:hover, button:hover {
+        background-color: $light-green;
+        color: #fff;
+    }
+}
+
+/************* Show -Items- *************/
+section#show-items {
+    .main-content {
+        h3{
+            color: $grey;
+            text-transform: uppercase;
+            padding-bottom: 20px;
+        }
+        .row {
+            .item {
+                margin-bottom: 10px;
+                overflow: hidden;
+                border: 1px solid transparent;
+                padding: 15px;
+                transition: all 400ms ease;
+                .item-images {
+                    margin-left: auto;
+                    margin-right: auto;
+                    .item-logo {
+                        width: 140px;
+                        height: 140px;
+                    }
+                }
+                .item-info {
+                    h4  {
+                        margin-top: 0;
+                    }
+                    h5, h4{
+                        color: $grey;
+                    }
+                }
+                .item-price-service {
+                    text-align: right;
+                    form.add-to-basket {
+                        button {
+                            margin-top: 7px;
+                            float: right;
+                            color: $orange;
+                            background-color: #fff;
+                            trasition: all 400ms ease;
+                            padding: 10px 15px;
+                            border: 1px solid $orange;
+                            clear: both;
+                        }
+                        button:hover {
+                            color: #fff;
+                            background-color: $orange;
+                        }
+                        input {
+                            margin-top: 10px;
+                            padding-left: 5px;
+                            color: $grey;
+                            border: 1px solid $grey;
+                            float: right;
+                            width: 50px;
+                            height: 30px;
+                            trasition: all 400ms ease;
+                            font-size: 16px;
+                        }                        
+                        input:hover {
+                            border: 1px solid $orange
+                        }
+                    }
+                }
+            }
+            .item:hover {
+                border: 1px solid $orange;  
+            }
+        }
+    }
+}
+
+/************* SignUp LogIn *******************/
+section#sign-up, section#log-in
+{
+    margin-top: 20px;
+    h4{
+        color: $grey;
+    }
+    select.form-control {
+        color: $grey;
+    }
+    select, input, textarea {
+        color: $grey;
+    }
+    select.form-control:hover, select.form-control:focus {
+        opacity: 1;
+    }
+    input:focus, select:focus, textarea:focus, button:focus {
+        border-color: $light-green;
+    }
+    button {
+        margin-top: 7px;
+        float: left;
+        color: $light-green;
+        background-color: #fff;
+        trasition: all 400ms ease;
+        padding: 10px 15px;
+        border: 1px solid $light-green;
+        clear: both;
+    }
+    button:hover {
+        color: #fff;
+        background-color: $light-green;
+    }
+    .form-group {
+        margin-bottom: 5px;
+    }
+}
