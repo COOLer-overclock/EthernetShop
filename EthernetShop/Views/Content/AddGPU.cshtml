@@ -1,0 +1,70 @@
+﻿@model EthernetShop.Models.GPUViewModel
+<form id="formAdd" class="form" method="post" enctype="multipart/form-data" action="@Url.Action("AddGPU", "GPU")">
+    <div class="form-group hide">
+        <label class="sr-only" for="CategoryName">Категория</label>
+        <input id="categoryName" type="text" class="form-control" name="CategoryName" placeholder="Категория" value="GPU" />
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="Name">Название:</label>
+        <input id="Name" type="text" class="form-control" name="Name" placeholder="Название">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="Price">Цена:</label>
+        <input type="number" class="form-control" name="Price" placeholder="Цена">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="Description">Описание:</label>
+        <textarea class="form-control" rows="5" name="Description" placeholder="Описание"></textarea>
+    </div>
+    <div class="form-group">
+        <div class="isInStockCheckBox">
+            <label id="stock" for="IsInStock">
+                В наличии:
+                <input id="isInStock" class="checkbox" type="checkbox" name="IsInStock" checked="checked" value="True" onchange="isInStockFunc">
+            </label>
+        </div>
+    </div>
+    <div id="amount" class="form-group">
+        <label class="sr-only" for="Amount">Количество:</label>
+        <input type="number" class="form-control" name="Amount" value="" placeholder="Количество">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="@Model.CoresAmount">Количество ядер:</label>
+        <input type="number" class="form-control" name="CoresAmount" placeholder="Количество ядер">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="@Model.CoreClockFrequency">Частота ядер:</label>
+        <input type="number" class="form-control" name="CoreClockFrequency" placeholder="Частота ядер">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="@Model.MemorySize">Объём памяти:</label>
+    <input type="number" class="form-control" name="MemorySize" placeholder="Объём памяти">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="@Model.MemoryClockFrequency">Частота памяти:</label>
+        <input type="number" class="form-control" name="MemoryClockFrequency" placeholder="Частота памяти">
+    </div>
+    <div class="form-group sr-only">
+        <input type="file" name="img" multiple="multiple" accept="image/*">
+    </div>
+    <div class="form-group">
+        <input type="button" value="Выбрать фотографии" class="upload-images" />
+    </div>
+    <button type="submit" class="btn btn-default" name="registere">Добавить</button>
+</form>
+<script>
+    $("#isInStock").change(function () {
+        var input = $("#amount")
+        if (this.checked == true) {
+            input.val("");
+            input.show();
+        }
+        else {
+            input.val("0");
+            input.hide();
+        }
+    });
+    $('input[class*="upload-images"]').click(function () {
+        $('input[type="file"]').click();
+    })
+</script>

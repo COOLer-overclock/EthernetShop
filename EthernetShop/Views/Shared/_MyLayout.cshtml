@@ -1,0 +1,111 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+    @RenderSection("head", false)
+    @RenderSection("scripts", false)
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="~/Content/shop-logo.png" alt="Логотип сайта" />
+                    </a>
+                </div>
+                <div class="col-md-6 text-center description">
+                    <h4>Компьютерные комплектующие</h4>
+                </div>
+                <div class="col-md-3 phone_number">
+                    <h4><a href="tel: +375 (44) 487 42 27">+375 (44) 487 42 27</a></h4>
+                    <p>
+                        Режим работы с 9<sup>00</sup> до 22<sup>00</sup>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <div class="container">
+            <div class="row">
+                <ul class="list-inline">
+                    <li>
+                        <a href="javascript:void(0)">Главная</a>
+                    </li>
+                    <li class="drop-menu">
+                        <a href="javascript:void(0)">Каталог</a>
+                        <div class="dropdown-content">
+                            <a href="@Url.Action("ShowCPUs", "CPU")">Процессоры</a>
+                            <a href="@Url.Action("ShowGPUs", "GPU")">Видеокарты</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">О Нас</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">Контакты</a>
+                    </li>
+                    <li href="javascript:void(0)">
+                        <a href="javascript:void(0)">Панель управления</a>
+                    </li>
+                    <div class="navbar-right">
+                        <li>
+                            <a href="@Url.Action("ShowBasket","ShoppingBasketService")">Корзина</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("RegistrationUser", "UsersService")">Зарегистрироваться</a>
+                        </li>
+                        <li href="javascript:void(0)">
+                            <a href="@Url.Action("LogIn", "UsersService")">Войти</a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>©@System.DateTime.Now.Year.ToString(); Компьютерный магазин. Все права защищены.</h5>
+                </div>
+                <div class="col-md-2 col-md-offset-6">
+                    <h5>127127 г. Минск, пр-т Рокоссовского, д.12</h5>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        $(document).ready(function () {
+            var navTop = $('nav').offset().top;
+            $(window).scroll(function () {
+                var navbar = document.getElementsByTagName("nav");
+                if (navbar != null) {
+                    if ($(navbar).offset().top - $(window).scrollTop() <= 0) {
+                        $(navbar).css("position", "fixed").css("top", 0).css("margin-right", "0px");
+                    }
+                    if ($(window).scrollTop() <= navTop) {
+                        $(navbar).css("top", navTop).css("position", "static");
+                    }
+                }
+            })
+            FooterSet();
+        });
+        function FooterSet() {
+            if ($(window).height() - $('footer').height() > $('footer').offset().top)
+                $('footer').offset({ top: $(window).height() - $('footer').height(), left: $('footer').offset().left });
+        };
+    </script>
+</body>
+</html>

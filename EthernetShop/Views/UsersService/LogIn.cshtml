@@ -1,0 +1,23 @@
+﻿@model EthernetShop.Models.UserLogInViewModel
+
+@{
+    ViewBag.Title = "Вход";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+<section id="log-in">
+    <div class="container">
+        <div class="col-md-4">
+            <form method="post" action="@Url.Action("LogIn", "UsersService")">
+                <div class="form-group">
+                    <label class="sr-only" for="@Model.LoginEmail">Логин или электронная почта:</label>
+                    <input type="text" class="form-control" name="LoginEmail" placeholder="Логин или электронная почта">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="@Model.Password">Пароль:</label>
+                    <input type="password" class="form-control" name="Password" placeholder="Пароль">
+                </div>
+                <button type="submit" class="btn btn-default" name="logIn">Войти</button>
+            </form>
+        </div>
+    </div>
+</section>

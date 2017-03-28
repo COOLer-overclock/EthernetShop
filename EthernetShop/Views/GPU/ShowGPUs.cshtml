@@ -1,0 +1,92 @@
+﻿@model IEnumerable<EthernetShop.Models.GPUViewModel>
+
+    @{
+        ViewBag.Title = "Процессоры";
+        Layout = "~/Views/Shared/_MyLayout.cshtml";
+    }
+    @section scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+<section id="show-items" class="cpus">
+    @if (Model.Count() > 0)
+    {
+        <div class="container">
+            <div class="col-md-9 main-content">
+                <h3>Видеокарты</h3>
+                @foreach (var gpu in Model)
+                {
+                    <div class="row">
+                        <div class="item">
+                            <div class="col-md-4 item-images">
+                                <div class="item-logo">
+                                    <img src="~/Content/Images/@gpu.Images.First()" alt="@gpu.CategoryName-@gpu.Name" class="item-logo" />
+                                </div>
+                            </div>
+                            <div class="col-md-4 item-info">
+                                <h4>@gpu.Name</h4>
+                                <h5>Количество ядер: @gpu.CoresAmount</h5>
+                                <h5>Частота: @gpu.CoreClockFrequency</h5>
+                                <h5>Объем кэша L2: @gpu.MemorySize</h5>
+                                <h5>Объем кэша L3: @gpu.MemoryClockFrequency</h5>
+                            </div>
+                            <div class="col-md-4 item-price-service">
+                                <h4>@gpu.Price BYR</h4>
+                                <form method="post" class="add-to-basket" action="@Url.Action("AddItem","ShoppingBasketService")">
+                                    <div class="sr-only">
+                                        <input name="categoryId" value="@gpu.CategoryId" />
+                                        <input name="itemId" value="@gpu.Id" />
+                                    </div>
+                                    <input type="number" value="1" name="amount" />
+                                    <button type="submit">Добавить в корзину</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-md-3 left-menu">
+            </div>
+        </div>
+    }
+    else
+    {
+        <h2>Товаров нет</h2>
+    }
+</section>
+ <script>
+        $(document).ready(function(){
+            function AddToBasketOnSuccess() {
+                var btn = document.getElementById('#addToBasketButton');
+                btn.disanabled = "true";
+                btn.value = "Добавлено";
+            };
+            $('button[id*="delete-item-"]').click(function(e) {
+                var current = this;
+                var parent = $(this).parent('div')[0];
+                console.log("Delete button clicked. ")
+                $.ajax({
+                    url: "@Url.Action("Delete", "GPU")",
+                    type: "post",
+                    data: $(current).next('form').serialize(),
+                    success: function(e){
+                        $(parent).remove();
+                        console.log("Data removed!");
+                    }}
+                );
+                e.preventDefault();
+            });
+            $('form.add-to-basket').submit(function(e) {
+                var frm = this;
+                $.ajax({
+                    url: "@Url.Action("AddItem", "ShoppingBasketService")",
+                    data: $(frm).serialize(),
+                    type: "get",
+                    success: function(){
+                        console.log("Item is added.");
+                    }
+                });
+                e.preventDefault();
+            })
+        })
+</script>

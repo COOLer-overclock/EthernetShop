@@ -1,0 +1,15 @@
+﻿@model EthernetShop.Models.OrderCreateViewModel
+
+@{
+    ViewBag.Title = "Оформление заказа";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Подробности заказа</h2>
+<form action="@Url.Action("MakeOrder","Order")" method="post">
+    <input type="text" name="FirstName" placeholder="Имя" />
+    <input type="text" name="SecondName" placeholder="Фамилия" />
+    <input type="tel" name="TelephoneNumber" placeholder="Телефон" />
+    <input type="text" name="Adress" placeholder="Адрес доставки" />
+    <input type="submit" value="Заказать" />
+</form>

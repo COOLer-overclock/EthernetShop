@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Каталог";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Категории:</h2>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <a href="@Url.Action("ShowCPUs", "CPU")">
+            Процессоры
+        </a>
+    </li>
+    <li class="list-group-item">
+        <a href="@Url.Action("ShowGPUs", "GPU")">
+            Видеокарты
+        </a>
+    </li>
+</ul>

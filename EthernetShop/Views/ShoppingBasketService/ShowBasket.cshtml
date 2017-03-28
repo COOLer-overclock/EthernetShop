@@ -1,0 +1,105 @@
+﻿@model EthernetShop.BLL.BusinessModels.ShoppingBasket
+
+@{
+    ViewBag.Title = "ShowBasket";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<!--<h1>Корзина</h1>
+<div>
+    @if (Model.Basket.Count != 0)
+    {
+        foreach (var item in Model.Basket)
+        {
+            <h2>@item.CategoryName - @item.Name</h2>
+            <h3>@item.Price</h3>
+            <h3>Количество: @item.AmountInBasket</h3>
+        }
+        <h2>Сумма заказа: @Model.TotalSum</h2>
+        <input type="button" value="Оформить заказ" onclick="location.href='@Url.Action("MakeOrder", "Order")'" />
+    }
+    else
+    {   <h2>Корзина пуста</h2>}
+
+</div> -->
+
+<section id="show-items">
+    <div class="container">
+        <h2>Корзина</h2>
+        @if (Model.Basket.Count > 0)
+        {
+            <div class="col-md-9 main-content">
+                @foreach (var item in Model.Basket)
+                {
+                    <div class="row">
+                        <div class="item">
+                            <div class="col-md-4 item-images">
+                                <div class="item-logo">
+                                    <img src="~/Content/Images/@item.Images.First()" alt="@item.CategoryName-@item.Name" class="item-logo" />
+                                </div>
+                            </div>
+                            <div class="col-md-4 item-info">
+                                <h4>@item.Name</h4>
+                                <h5>Категория: @item.CategoryName</h5>
+                                <h5 name="current-amount" data-current-amount="@item.AmountInBasket">Количество: @item.AmountInBasket</h5>
+                                <h5>Цена за одну единицу: @item.Price</h5>
+                            </div>
+                            <div class="col-md-4 item-price-service">
+                                @{var price = item.Price * item.AmountInBasket;}
+                                <h4 name="price" data-price-item="@item.Price" data-sum="@price">@price BYR</h4>
+                                <form method="post" class="add-to-basket">
+                                    <div class="sr-only">
+                                        <input name="categoryId" value="@item.CategoryId"/>
+                                        <input name="itemId" value="@item.Id" />
+                                    </div>
+                                    <input name="amount" type="number" data-basket-amount="@item.AmountInBasket" value="1">
+                                    <button name="remove-item">Убрать из корзины</button>
+                                </form>                           
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <h3>Товаров нет</h3>
+        }
+    </div>
+<script>
+    $(document).ready(function() {
+        $('form').submit(function (event) {
+            var formOwner = this;
+            $.ajax({
+                url: "@Url.Action("RemoveItem", "ShoppingBasketService")",
+                data: $(formOwner).serialize(),
+                success: function(){
+                    var amountElem = $(formOwner).children('input[name="amount"]');
+                    if($(amountElem).val() >=  $(amountElem).data('basket-amount'))
+                    {
+                        $(formOwner).parents('div.row').empty();
+                        if ($('.item').length == 0)
+                            $('.container h2').after("<h3>Товаров нет</h3>");
+                        FooterSet();
+                    }
+                    else
+                    {
+                        $(formOwner).prev('h4[name="price"]').each(function (index, elem) {
+                            var amountToDelete = $(formOwner).children('input[name="amount"]').val();
+                            var newSum = $(elem).data("sum") - $(elem).data("price-item") * amountToDelete;
+                            $(elem).data("sum", newSum.toString()).text(newSum.toString() + " BYR");
+                            var curAmountElem = $(formOwner).parents('div.item').first().find('h5[name="current-amount"]');
+                            var curAmount = $(curAmountElem).data("current-amount") - amountToDelete;
+                            $(amountElem).data('basket-amount', curAmount);
+                            $(curAmountElem).text($(curAmountElem).text().replace($(curAmountElem).data("current-amount").toString(), curAmount.toString()));
+                            $(curAmountElem).data("current-amount", curAmount);
+                        })
+                    }
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+</section>
+

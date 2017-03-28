@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+    @RenderSection("scripts", false)
+</head>
+<body style="padding-top: 0px">
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-menu">
+                    <span class="sr-only">Открыть навигацию</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">Магазин</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navigation-menu">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">
+                            <span class="glyphicon glyphicon-home"></span>
+                            Домой
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ShowCategories", "Content")">
+                            <span class="glyphicon glyphicon-align-justify"></span>
+                            Каталог
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            О Нас
+                        </a>
+                    </li>
+                    @if (Session["Role"].ToString().ToLower() == "user")
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <span class="glyphicon glyphicon-cog"></span>
+                                Управление
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if (Session["Role"].ToString().ToLower() != "moderator")
+                                {
+                                <li><a href="@Url.Action("ShowUsers", "UsersService")">Пользователями</a></li>
+                                }
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1">Каталогом</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("AddItem", "Content")">Добавление товаров</a></li>
+                                        <li><a href="#">Удаление товаров</a></li>
+                                        <li><a href="#">Редактирование</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="@Url.Action("ShowBasket","ShoppingBasketService")">
+                                    <span class="glyphicon glyphicon glyphicon-shopping-cart"></span>
+                                    Корзина
+                                </a>
+                            </li>
+                            @if ((Session["IsAuthorized"] != null) && (Session["IsAuthorized"] == "False"))
+                            {
+                                <li>
+                                    <a href="@Url.Action("RegistrationUser", "UsersService")">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        Зарегистрироваться
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("LogIn", "UsersService")">
+                                        <span class="glyphicon glyphicon-log-in"></span>
+                                        Войти
+                                    </a>
+                                </li>
+                            }
+                            @if ((Session["IsAuthorized"] != null) && (Session["IsAuthorized"] == "True"))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "Home")">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        @Session["Login"]
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("LogOut", "UsersService")">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                        Выйти
+                                    </a>
+                                </li>
+                            }             
+                </ul>
+            </div>
+            <!--<ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Домой
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ShowCategories", "Content")">
+                        <span class="glyphicon glyphicon-align-justify"></span>
+                        Каталог
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        О Нас
+                    </a>
+                </li>
+                @if (Session["Role"].ToString().ToLower() == "user")
+                {
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="glyphicon glyphicon-cog"></span>
+                            Управление
+                            <span class="caret"></span>
+                        </a>                                                      
+                        <ul class="dropdown-menu">
+                            @if (Session["Role"].ToString().ToLower() != "moderator")
+                            {
+                                <li><a href="@Url.Action("ShowUsers", "UsersService")">Пользователями</a></li>
+                            }
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1">Каталогом</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("AddItem", "Content")">Добавление товаров</a></li>
+                                    <li><a href="#">Удаление товаров</a></li>
+                                    <li><a href="#">Редактирование</a></li>
+                                </ul>
+                            </li>  
+                        </ul>
+                    </li>
+                }
+
+            </ul>-->
+            <!--<ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="@Url.Action("ShowShoppingBasket","Shopping")">
+                        <span class="glyphicon glyphicon glyphicon-shopping-cart"></span>
+                        Корзина
+                    </a>
+                </li>
+                @if ((Session["IsAuthorized"] != null) && (Session["IsAuthorized"] == "False"))
+                {
+                    <li>
+                        <a href="@Url.Action("RegistrationUser", "UsersService")">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Зарегистрироваться
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("LogIn", "UsersService")">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                            Войти
+                        </a>
+                    </li>
+                }
+                @if ((Session["IsAuthorized"] != null) && (Session["IsAuthorized"] == "True"))
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">
+                            <span class="glyphicon glyphicon-user"></span>
+                            @Session["Login"]
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("LogOut", "UsersService")">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                            Выйти
+                        </a>
+                    </li>
+                }
+            </ul>-->
+                </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1">
+                @RenderSection("LeftMenu", false)
+            </div>
+            <div class="col-lg-10">
+                @RenderBody()
+            </div>
+            <div class="col-lg-1 col-lg-offset-11">
+                @RenderSection("RightMenu", false)
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            window.onscroll = function () {
+                var navbar = document.getElementsByTagName("nav");
+                if (navbar != null)
+                {
+                    if (navbar.getBoundingClientRect().top <= 0)
+                    {
+                        navbar.style.position = "fixed";
+                    }
+                    else
+                    {
+                        navbar.style.position = "static";
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

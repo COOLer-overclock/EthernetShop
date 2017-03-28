@@ -1,0 +1,76 @@
+﻿@model EthernetShop.Models.UserAddViewModel
+
+@{
+    ViewBag.Title = "Регистрация";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+<section id="sign-up">
+    <div class="container">
+        <div class="col-md-4">
+            <h4>Регистрация</h4>
+            <form method="post" action="@Url.Action("RegistrationUser", "UsersService")">
+                <div class="form-group">
+                    <label class="sr-only" for="@Model.Login">Логин:</label>
+                    <input type="text" class="form-control" name="Login" placeholder="Логин">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="@Model.Email">Электронный адрес:</label>
+                    <input type="email" class="form-control" name="Email" placeholder="Электронный адрес">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="@Model.Password">Пароль:</label>
+                    <input type="password" class="form-control" name="Password" placeholder="Пароль">
+                </div>
+                @if (Session["Role"] != null && (Session["Role"].ToString().ToLower() == "developer" || Session["Role"].ToString().ToLower() == "admin"))
+                {
+                    <div class="form-group">
+                        <label class="sr-only" for="@Model.Role">Роль:</label>
+                        <select class="form-control" name="Role">
+                            <option value="User">User</option>
+                            <option value="Developer">Developer</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Moderator">Moderator</option>
+                        </select>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group sr-only">
+                        <label class="sr-only" for="@Model.Role">Роль:</label>
+                        <select class="form-control" name="Role">
+                            <option value="User">User</option>
+                            <option value="Developer">Developer</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Moderator">Moderator</option>
+                        </select>
+                    </div>
+                }
+                <div class="form-group">
+                    <label class="sr-only" for="@Model.Adress">Адрес:</label>
+                    <input type="text" class="form-control" name="Adress" placeholder="Адрес">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="@Model.TelephoneNumber">Телефонный номер:</label>
+                    <input type="tel" class="form-control" name="TelephoneNumber" placeholder="Телефонный номер">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="@Model.Age">Возраст:</label>
+                    <input type="text" class="form-control" name="Age" placeholder="Возраст">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="@Model.FirstName">Имя:</label>
+                    <input type="text" class="form-control" name="FirstName" placeholder="Имя">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="@Model.SecondName">Фамилия:</label>
+                    <input type="text" class="form-control" name="SecondName" placeholder="Фамилия">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="@Model.Patronymic">Очество:</label>
+                    <input type="text" class="form-control" name="Patronymic" placeholder="Очество">
+                </div>
+                <button type="submit" class="btn btn-default" name="registere">Зарегестрироваться</button>
+            </form>
+        </div>
+    </div>
+</section>

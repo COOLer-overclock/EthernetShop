@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Добавление товаров";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}
+<section id="add_item">
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <div id="category_selector" class="form-group">
+                <h4>Категория:</h4>
+                <form id="categoryForm">
+                    <select id="categorySelector" class="form-control" name="categoryName">
+                        <option value="CPU">Процессоры</option>
+                        <option value="GPU">Видеокарты</option>
+                    </select>
+                </form>
+            </div>
+            <div id="itemForm">
+                @Html.Partial("AddCPU", new EthernetShop.Models.CPUViewModel())
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function() {
+        document.getElementById("categoryName").setAttribute("value", document.getElementById("categorySelector").value);
+        $('#categorySelector').on('change', function () {
+            $.ajax({
+                url: "@Url.Action("ChooseContentForm")",
+                type: "post",
+                data: $('#categoryForm').serialize(),
+                success: function (data, status, jqxhr) {
+                    $('#itemForm').children().remove().end().append(data);
+                }
+            });
+        });
+    });
+</script>
