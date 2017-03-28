@@ -1,5 +1,5 @@
 This project has three main layers:
 1. DAL (Data Access Layer) - layer which works with database and provides low-level functions for data access in DB.
 2. BLL (Buisness Logic Layer) - contains buisness services, buisness models and transfer models from DAL layer to main layer.
-3. Main application - contains global app settings, controllers and views' files.
+3. Main application (EthernetShop) - contains global app settings, controllers and views' files.
 DependencyResolver - contains config file for Ninject IoC container. 
