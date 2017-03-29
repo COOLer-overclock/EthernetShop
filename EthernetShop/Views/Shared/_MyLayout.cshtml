@@ -55,19 +55,40 @@
                     <li>
                         <a href="javascript:void(0)">Контакты</a>
                     </li>
-                    <li href="javascript:void(0)">
-                        <a href="javascript:void(0)">Панель управления</a>
-                    </li>
+                    @if (Session["Role"] != null && Session["Role"].ToString().ToLower() != "user")
+                    {
+                        <li href="javascript:void(0)">
+                            <a href="javascript:void(0)">Панель управления</a>
+                        </li>
+                    }
                     <div class="navbar-right">
+                        @if (Session["IsAuthorized"] != null && Session["IsAuthorized"].ToString().ToLower() == "true" && Session["Login"] != null)
+                        {
+                            <li>
+                                <a id="login" href="javascript:void(0)">@Session["Login"]</a>
+                            </li>
+                        }
                         <li>
                             <a href="@Url.Action("ShowBasket","ShoppingBasketService")">Корзина</a>
                         </li>
-                        <li>
-                            <a href="@Url.Action("RegistrationUser", "UsersService")">Зарегистрироваться</a>
-                        </li>
-                        <li href="javascript:void(0)">
-                            <a href="@Url.Action("LogIn", "UsersService")">Войти</a>
-                        </li>
+                        @if (Session["IsAuthorized"] != null && Session["IsAuthorized"].ToString().ToLower() == "false")
+                        {
+                            <li>
+                                <a href="@Url.Action("RegistrationUser", "UsersService")">Зарегистрироваться</a>
+                            </li>
+                            <li href="javascript:void(0)">
+                                <a href="@Url.Action("LogIn", "UsersService")">Войти</a>
+                            </li>
+                        }
+                        else
+                        {
+                            if (Session["IsAuthorized"] != null)
+                            {
+                                <li>
+                                    <a href="@Url.Action("LogOut", "UsersService")">Выйти</a>
+                                </li>
+                            }
+                        }
                     </div>
                 </ul>
             </div>

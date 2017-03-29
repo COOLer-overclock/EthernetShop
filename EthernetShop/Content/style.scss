@@ -1,6 +1,7 @@
 ﻿/*********** Global Settings ************/
-a, a:hover {
-    text-decoration: none;
+a, a:hover, a:visited {
+    text-decoration: none !important;
+    color: none !important;
 }
 
 input, select, textarea, button {
@@ -90,6 +91,9 @@ nav {
             a:hover {
                 color: #fff;
                 background-color: $light-green;
+            }
+            a#login {
+                text-transform: none !important;
             }
         }
         li.drop-menu {

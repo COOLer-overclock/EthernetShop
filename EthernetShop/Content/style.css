@@ -1,6 +1,7 @@
 ﻿/*********** Global Settings ************/
-a, a:hover {
-  text-decoration: none; }
+a, a:hover, a:visited {
+  text-decoration: none !important;
+  color: none !important; }
 
 input, select, textarea, button {
   border-radius: 0 !important; }
@@ -64,6 +65,8 @@ nav {
       nav ul li a:hover {
         color: #fff;
         background-color: #67cc67; }
+      nav ul li a#login {
+        text-transform: none !important; }
     nav ul li.drop-menu .dropdown-content {
       display: none;
       position: absolute;

