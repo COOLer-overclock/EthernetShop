@@ -1,0 +1,106 @@
+﻿@model EthernetShop.Models.GPUViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<section id="show-item">
+    <div class="container">
+        <div class="row">
+            <div class="item-name">
+                <div class="col-md-12">
+                    <h2>@Model.Name</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="big-image">
+                        @if (Model.Images.Count > 0)
+                        {
+                            <img src="~/Content/Images/@Model.Images.First()" />
+                        }
+                        else
+                        {
+                            <img src="~/Content/Images/NoImages.jpg" alt="Нет изображений" />
+                        }
+                    </div>
+                </div>
+                @if (Model.Images.Count > 1)
+                {
+                    <div class="row">
+                        <div class="all-images">
+                            @foreach (var image in Model.Images)
+                            {
+                                <div class="separate-image">
+                                    <img src="~/Content/Images/@image">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="description">
+                        <div class="col-md-12">
+                            <p>@Model.Description</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="info">
+                        <div class="col-md-6">
+                            <h4>Количество ядер:</h4>
+                            <h4>Частота ядер:</h4>
+                            <h4>Объем видеопамяти:</h4>
+                            <h4>Частота видеопамяти:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>@Model.CoresAmount</h4>
+                            <h4>@Model.CoreClockFrequency МГц</h4>
+                            <h4>@Model.MemorySize Мб</h4>
+                            <h4>@Model.MemoryClockFrequency МГц</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                @if (Model.IsInStock)
+            {
+                    <div class="item-price-service">
+                        <h4>@Model.Price BYR</h4>
+                        <form method="post" class="add-to-basket" action="@Url.Action("AddItem","ShoppingBasketService")">
+                            <div class="sr-only">
+                                <input name="categoryId" value="@Model.CategoryId" />
+                                <input name="itemId" value="@Model.Id" />
+                            </div>
+                            <input type="number" value="1" name="amount" />
+                            <button type="submit">Добавить в корзину</button>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <h4>Нет в наличии</h4>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $('form.add-to-basket').submit(function (e) {
+        var frm = this;
+        $.ajax({
+            url: "@Url.Action("AddItem", "ShoppingBasketService")",
+            data: $(frm).serialize(),
+        type: "post",
+        success: function () {
+            console.log("Item is added.");
+        }
+    });
+    e.preventDefault();
+    })
+</script>

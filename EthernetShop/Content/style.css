@@ -113,7 +113,40 @@ section#add_item {
     background-color: #67cc67;
     color: #fff; }
 
+/************* Item setting *************/
+.item-price-service {
+  text-align: right; }
+  .item-price-service form.add-to-basket button {
+    margin-top: 7px;
+    float: right;
+    color: #ff9933;
+    background-color: #fff;
+    trasition: all 400ms ease;
+    padding: 10px 15px;
+    border: 1px solid #ff9933;
+    clear: both; }
+  .item-price-service form.add-to-basket button:hover {
+    color: #fff;
+    background-color: #ff9933; }
+  .item-price-service form.add-to-basket input {
+    margin-top: 10px;
+    padding-left: 5px;
+    color: #666666;
+    border: 1px solid #666666;
+    float: right;
+    width: 50px;
+    height: 30px;
+    trasition: all 400ms ease;
+    font-size: 16px; }
+  .item-price-service form.add-to-basket input:hover {
+    border: 1px solid #ff9933; }
+
 /************* Show -Items- *************/
+a.item-name, a.item-name:hover, a.item-name:visited, a.item-name:active {
+  color: #000;
+  text-decoration: none;
+  font-size: 20px; }
+
 section#show-items .main-content h3 {
   color: #666666;
   text-transform: uppercase;
@@ -129,8 +162,10 @@ section#show-items .main-content .row .item {
     margin-left: auto;
     margin-right: auto; }
     section#show-items .main-content .row .item .item-images .item-logo {
-      width: 140px;
-      height: 140px; }
+      max-width: 140px;
+      max-height: 140px; }
+      section#show-items .main-content .row .item .item-images .item-logo img {
+        vertical-align: middle; }
   section#show-items .main-content .row .item .item-info h4 {
     margin-top: 0; }
   section#show-items .main-content .row .item .item-info h5, section#show-items .main-content .row .item .item-info h4 {
@@ -164,6 +199,27 @@ section#show-items .main-content .row .item {
 
 section#show-items .main-content .row .item:hover {
   border: 1px solid #ff9933; }
+
+/************* Show-item *****************/
+section#show-item .item-name h2 {
+  color: #000; }
+
+section#show-item .big-image {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 350px !important;
+  max-height: 350px !important; }
+  section#show-item .big-image img {
+    max-height: 350px;
+    max-width: 350px; }
+
+section#show-item .description p {
+  color: #666666;
+  font-size: 16px; }
+
+section#show-item .info h4 {
+  color: #666666;
+  font-size: 16px; }
 
 /************* SignUp LogIn *******************/
 section#sign-up, section#log-in {

@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 item-info">
-                                <h4>@cpu.Name</h4>
+                                <a class="item-name" href="@Url.Action("ShowItem","Content", new { categoryName = cpu.CategoryName, itemId = cpu.Id })">@cpu.Name</a>
                                 <h5>Количество ядер: @cpu.CoresAmount</h5>
                                 <h5>Частота: @cpu.ClockFrequency</h5>
                                 <h5>Объем кэша L2: @cpu.CashL2</h5>

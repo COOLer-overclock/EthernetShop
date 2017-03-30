@@ -65,7 +65,7 @@ namespace EthernetShop.BLL.Services
                     else
                         shopBasket.Basket.First(x => x.Id == Model.Id && x.CategoryId == Model.CategoryId).AmountInBasket += amount;
                     shopBasket.TotalSum += Model.Price * amount;
-                    _httpContext.Session["ShoppingBasket"] = shopBasket;
+                    SaveBasket(shopBasket);
                 }
             }
         }
@@ -97,6 +97,7 @@ namespace EthernetShop.BLL.Services
                     else
                         temp.AmountInBasket -= amount;
                 }
+                SaveBasket(shopBasket);
             }
         }
         public ShoppingBasket GetBasket()
@@ -105,6 +106,10 @@ namespace EthernetShop.BLL.Services
             if (shopBasket == null)
                 shopBasket = Basket;
             return shopBasket;
+        }
+        private void SaveBasket(ShoppingBasket basket)
+        {
+            _httpContext.Session["ShoppingBasket"] = basket;
         }
         public void ClearAll()
         {
