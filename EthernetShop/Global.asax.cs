@@ -18,13 +18,17 @@ namespace EthernetShop
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-
         protected void Session_Start(object sender, EventArgs e)
         {
-            Session["IsAuthorized"] = "False";
+            /*Session["IsAuthorized"] = "False";
             Session["Id"] = null;
             Session["Login"] = null;
             Session["Role"] = "User";
+            Session["ShoppingBasket"] = new ShoppingBasket();*/
+            Session["IsAuthorized"] = "True";
+            Session["Id"] = "8";
+            Session["Login"] = "COOLer_overclock";
+            Session["Role"] = "Developer";
             Session["ShoppingBasket"] = new ShoppingBasket();
         }
     }

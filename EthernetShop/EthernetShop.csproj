@@ -240,6 +240,8 @@
     <Content Include="Views\GPU\ShowGPUs.cshtml" />
     <Content Include="Views\Order\MakeOrder.cshtml" />
     <Content Include="Views\Shared\_MyLayout.cshtml" />
+    <Content Include="Views\CPU\ShowCPU.cshtml" />
+    <Content Include="Views\GPU\ShowGPU.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\ContentImages\" />

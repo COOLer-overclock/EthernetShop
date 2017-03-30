@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 item-info">
-                                <h4>@gpu.Name</h4>
+                                <a class="item-name" href="@Url.Action("ShowItem","Content", new { categoryName = gpu.CategoryName, itemId = gpu.Id })">@gpu.Name</a>
                                 <h5>Количество ядер: @gpu.CoresAmount</h5>
                                 <h5>Частота: @gpu.CoreClockFrequency</h5>
                                 <h5>Объем кэша L2: @gpu.MemorySize</h5>

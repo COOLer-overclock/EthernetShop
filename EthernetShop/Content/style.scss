@@ -169,7 +169,50 @@ section#add_item {
     }
 }
 
+
+/************* Item setting *************/
+.item-price-service {
+    text-align: right;
+    form.add-to-basket {
+        button {
+            margin-top: 7px;
+            float: right;
+            color: $orange;
+            background-color: #fff;
+            trasition: all 400ms ease;
+            padding: 10px 15px;
+            border: 1px solid $orange;
+            clear: both;
+        }
+        button:hover {
+           color: #fff;
+           background-color: $orange;
+        }
+        input {
+           margin-top: 10px;
+           padding-left: 5px;
+           color: $grey;
+           border: 1px solid $grey;
+           float: right;
+           width: 50px;
+           height: 30px;
+           trasition: all 400ms ease;
+           font-size: 16px;
+        }                         
+        input:hover {
+            border: 1px solid $orange
+        }
+    }
+ }
+
+
 /************* Show -Items- *************/
+a.item-name, a.item-name:hover, a.item-name:visited, a.item-name:active {
+    color: #000;
+    text-decoration: none;
+    font-size: 20px;
+}
+
 section#show-items {
     .main-content {
         h3{
@@ -188,8 +231,11 @@ section#show-items {
                     margin-left: auto;
                     margin-right: auto;
                     .item-logo {
-                        width: 140px;
-                        height: 140px;
+                        max-width: 140px;
+                        max-height: 140px;
+                        img {
+                            vertical-align: middle;
+                        }
                     }
                 }
                 .item-info {
@@ -237,6 +283,39 @@ section#show-items {
             .item:hover {
                 border: 1px solid $orange;  
             }
+        }
+    }
+}
+
+/************* Show-item *****************/
+section#show-item {
+    .item-name {
+        h2 {
+            color: #000;
+        }
+    }
+    .big-image {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 350px !important;
+        max-height: 350px !important;
+        img {
+            max-height: 350px;
+            max-width: 350px;
+        }
+    }
+    .all-images {
+    }
+    .description {
+        p {
+            color: $grey;
+            font-size: 16px;
+        }
+    }
+    .info {
+        h4 {
+            color: $grey;
+            font-size: 16px;
         }
     }
 }
