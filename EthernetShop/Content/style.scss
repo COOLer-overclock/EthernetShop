@@ -1,13 +1,11 @@
-﻿/*********** Global Settings ************/
+﻿/*********** Global Settings **********/
 a, a:hover, a:visited {
     text-decoration: none !important;
     color: none !important;
 }
-
 input, select, textarea, button {
     border-radius: 0 !important;
 }
-
 button:active, button:hover, button:focus {
     box-shadow: none !important;
     outline: 0 none !important;
@@ -24,7 +22,6 @@ textarea:active, textarea:hover, textarea:focus {
     box-shadow: none !important;
     outline: 0 none !important;
 }
-
 .item-logo{
     img {
         display: inline-block;
@@ -36,7 +33,8 @@ $nav-grey: #fafdfa;
 $light-grey: #cccccc;
 $light-green: #67cc67;
 $orange:#ff9933;
-/*********** Header ************/
+
+/************** Header ****************/
 header {
     .description {
         h4 {
@@ -87,10 +85,19 @@ nav {
                 text-transform: uppercase;
                 padding: 20px 10px;
                 transition: all 400ms ease;
+                div.notification {
+                    display: inline-block;
+                    color: $grey;
+                    transition: all 400ms ease;
+                    margin-left: 4px;
+                }
             }
             a:hover {
                 color: #fff;
                 background-color: $light-green;
+                div.notification {
+                    color: #fff;
+                }
             }
             a#login {
                 text-transform: none !important;
@@ -119,11 +126,19 @@ nav {
     }
 }
 
-/************* Footer *****************/
+/*********** Notifications ************/
+
+nav {
+    span#order-notification {
+        color: $grey;
+    }
+}
+
+/************** Footer ****************/
 footer {
 }
 
-/************* AddItem.cshtml *********/
+/*********** AddItem.cshtml ***********/
 section#add_item {
     margin-top: 20px;
     h4{
@@ -169,8 +184,7 @@ section#add_item {
     }
 }
 
-
-/************* Item setting *************/
+/*********** Item setting *************/
 .item-price-service {
     text-align: right;
     form.add-to-basket {
@@ -205,14 +219,24 @@ section#add_item {
     }
  }
 
-
-/************* Show -Items- *************/
+/************ Show -Items- ************/
 a.item-name, a.item-name:hover, a.item-name:visited, a.item-name:active {
     color: #000;
     text-decoration: none;
     font-size: 20px;
 }
-
+button#makeOrder {
+    border: 1px solid $light-green !important;
+    color: $light-green !important;
+    background-color: #fff !important;
+    trasition: all 400ms ease;
+    padding: 10px 15px !important;
+}
+button#makeOrder:hover {
+    border: 1px solid $light-green;
+    color: #fff;
+    background-color: $light-green;
+}   
 section#show-items {
     .main-content {
         h3{
@@ -287,7 +311,7 @@ section#show-items {
     }
 }
 
-/************* Show-item *****************/
+/************* Show-item **************/
 section#show-item {
     .item-name {
         h2 {
@@ -320,7 +344,7 @@ section#show-item {
     }
 }
 
-/************* SignUp LogIn *******************/
+/************ SignUp LogIn ************/
 section#sign-up, section#log-in
 {
     margin-top: 20px;

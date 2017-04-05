@@ -127,5 +127,10 @@ namespace EthernetShop.BLL.Services
                 httpContext.Session["Login"] = user.Email;
             httpContext.Session["Role"] = user.Role.Name;
         }
+
+        public UserDTO Get(Func<UserDTO, bool> where)
+        {
+            return AM.AutoMapper.Mapper.Map<ICollection<User>, ICollection<UserDTO>>(db.Users.GetList()).Where(where).FirstOrDefault();
+        }
     }
 }

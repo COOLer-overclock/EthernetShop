@@ -5,6 +5,7 @@ using EthernetShop.BLL.Services;
 using EthernetShop.DAL.Interfaces;
 using EthernetShop.DAL.Repositories;
 using Ninject;
+using Ninject.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;

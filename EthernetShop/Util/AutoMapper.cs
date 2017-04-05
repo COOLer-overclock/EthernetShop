@@ -13,7 +13,7 @@ namespace EthernetShop.Util
         {
             var config = new AM.MapperConfiguration(cfg => {
                 cfg.AddProfile<AutoMapperProfile>();
-            });
+                });
             Mapper = new AM.Mapper(config);
         }
     }

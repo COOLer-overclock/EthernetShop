@@ -15,7 +15,7 @@ namespace EthernetShop.Util
         public NinjectDependencyResolver(IKernel kernelParam)
         {
             kernel = kernelParam;
-            AddBindings();
+            DependencyResolver.DependencyResolver.Initialization(kernel);
         }
         public object GetService(Type serviceType)
         {
@@ -24,10 +24,6 @@ namespace EthernetShop.Util
         public IEnumerable<object> GetServices(Type serviceType)
         {
             return kernel.GetAll(serviceType);
-        }
-        private void AddBindings()
-        {
-            DependencyResolver.DependencyResolver.Initialization(kernel);
         }
     }
 }

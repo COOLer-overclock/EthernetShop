@@ -1,4 +1,4 @@
-﻿/*********** Global Settings ************/
+﻿/*********** Global Settings **********/
 a, a:hover, a:visited {
   text-decoration: none !important;
   color: none !important; }
@@ -25,7 +25,7 @@ textarea:active, textarea:hover, textarea:focus {
 .item-logo img {
   display: inline-block; }
 
-/*********** Header ************/
+/************** Header ****************/
 header .description h4 {
   color: #666666;
   font-weight: normal;
@@ -62,9 +62,16 @@ nav {
         text-transform: uppercase;
         padding: 20px 10px;
         transition: all 400ms ease; }
+        nav ul li a div.notification {
+          display: inline-block;
+          color: #666666;
+          transition: all 400ms ease;
+          margin-left: 4px; }
       nav ul li a:hover {
         color: #fff;
         background-color: #67cc67; }
+        nav ul li a:hover div.notification {
+          color: #fff; }
       nav ul li a#login {
         text-transform: none !important; }
     nav ul li.drop-menu .dropdown-content {
@@ -80,8 +87,12 @@ nav {
         color: #fff;
         background-color: #67cc67; }
 
-/************* Footer *****************/
-/************* AddItem.cshtml *********/
+/*********** Notifications ************/
+nav span#order-notification {
+  color: #666666; }
+
+/************** Footer ****************/
+/*********** AddItem.cshtml ***********/
 section#add_item {
   margin-top: 20px; }
   section#add_item h4 {
@@ -113,7 +124,7 @@ section#add_item {
     background-color: #67cc67;
     color: #fff; }
 
-/************* Item setting *************/
+/*********** Item setting *************/
 .item-price-service {
   text-align: right; }
   .item-price-service form.add-to-basket button {
@@ -141,11 +152,23 @@ section#add_item {
   .item-price-service form.add-to-basket input:hover {
     border: 1px solid #ff9933; }
 
-/************* Show -Items- *************/
+/************ Show -Items- ************/
 a.item-name, a.item-name:hover, a.item-name:visited, a.item-name:active {
   color: #000;
   text-decoration: none;
   font-size: 20px; }
+
+button#makeOrder {
+  border: 1px solid #67cc67 !important;
+  color: #67cc67 !important;
+  background-color: #fff !important;
+  trasition: all 400ms ease;
+  padding: 10px 15px !important; }
+
+button#makeOrder:hover {
+  border: 1px solid #67cc67;
+  color: #fff;
+  background-color: #67cc67; }
 
 section#show-items .main-content h3 {
   color: #666666;
@@ -200,7 +223,7 @@ section#show-items .main-content .row .item {
 section#show-items .main-content .row .item:hover {
   border: 1px solid #ff9933; }
 
-/************* Show-item *****************/
+/************* Show-item **************/
 section#show-item .item-name h2 {
   color: #000; }
 
@@ -221,7 +244,7 @@ section#show-item .info h4 {
   color: #666666;
   font-size: 16px; }
 
-/************* SignUp LogIn *******************/
+/************ SignUp LogIn ************/
 section#sign-up, section#log-in {
   margin-top: 20px; }
   section#sign-up h4, section#log-in h4 {

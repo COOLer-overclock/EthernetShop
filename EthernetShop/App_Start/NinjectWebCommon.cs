@@ -5,13 +5,9 @@ namespace EthernetShop.App_Start
 {
     using System;
     using System.Web;
-
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
-    using EthernetShop.BLL.Infrastructure;
-    using Ninject.Modules;
 
     public static class NinjectWebCommon 
     {
@@ -41,8 +37,7 @@ namespace EthernetShop.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var modules = new INinjectModule[] { new ServiceModule("DefaultConnection") };
-            var kernel = new StandardKernel(modules);
+            var kernel = new StandardKernel();
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -65,6 +60,6 @@ namespace EthernetShop.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             System.Web.Mvc.DependencyResolver.SetResolver(new EthernetShop.Util.NinjectDependencyResolver(kernel));
-        }
+        }        
     }
 }

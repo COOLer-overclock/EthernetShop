@@ -2,6 +2,7 @@
 using EthernetShop.BLL.DTO;
 using EthernetShop.BLL.DTO.Content;
 using EthernetShop.Models;
+using EthernetShop.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace EthernetShop.Util
             CreateMap<GPU_DTO, GPUViewModel>();
             CreateMap<GPUViewModel, GPU_DTO>();
             CreateMap<OrderCreateViewModel, OrderDTO>();
+            CreateMap<UserDTO, SignalRUser>().ForMember("SignalRId", x => x.UseValue<object>(null));
         }
     }
 }

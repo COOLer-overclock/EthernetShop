@@ -13,5 +13,6 @@ namespace EthernetShop.BLL.Interfaces
         void UpdateUser(UserAddDTO userAddDTO);
         void DeleteUser(int id);
         void Dispose();
+        UserDTO Get(Func<UserDTO, bool> where);
     }
 }

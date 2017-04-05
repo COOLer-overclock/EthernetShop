@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using EthernetShop.Attributes;
 using EthernetShop.BLL.DTO;
 using EthernetShop.Models;
 using AM = EthernetShop.Util;
 using EthernetShop.BLL.Interfaces;
 using Ninject;
+using Microsoft.AspNet.SignalR;
+using EthernetShop.SignalR;
 
 namespace EthernetShop.Controllers
 {
@@ -26,7 +24,10 @@ namespace EthernetShop.Controllers
         {
             if(order != null)
             {
-                OrderService.AddOrder(AM.AutoMapper.Mapper.Map<OrderCreateViewModel, OrderDTO>(order));
+                OrderProcessingHelper.Orders.Add(order);
+                //OrderService.AddOrder(AM.AutoMapper.Mapper.Map<OrderCreateViewModel, OrderDTO>(order));
+                var context = GlobalHost.ConnectionManager.GetHubContext<OrderProcessingHub>();
+                context.Clients.All.addNotification(OrderProcessingHelper.Orders.Count);
             }
             return RedirectToAction("Index", "Home");
         }

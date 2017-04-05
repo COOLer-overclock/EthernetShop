@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using EthernetShop.Attributes;
 using EU = EthernetShop.Util;
+using Microsoft.AspNet.SignalR;
+using EthernetShop.SignalR;
 
 namespace EthernetShop.Controllers
 {
@@ -44,6 +46,11 @@ namespace EthernetShop.Controllers
             {
                 if (userService.UserLogIn(EU.AutoMapper.Mapper.Map<UserLogInViewModel, UserLogInDTO>(userLogInViewModel)))
                 {
+                   /* if (Session["Role"].ToString().ToLower() != "user")
+                    {
+                        UserDTO user = userService.Get(x => x.Email == userLogInViewModel.LoginEmail || x.Login == userLogInViewModel.LoginEmail);
+                        OrderProcessingHelper.AddUser(user);
+                    }*/
                     return RedirectToAction("Index", "Home");
                 }
                 return Content("Ошибка авторизации.");
